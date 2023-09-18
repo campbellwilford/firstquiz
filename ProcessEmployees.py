@@ -14,17 +14,21 @@ import csv
 
 #open the file
 
-
+with open('employee_data.csv', mode='r') as file:
+    reader = csv.DictReader(file)
 
 
 #create an empty dictionary
-
+    report = {}
 
 #use a loop to iterate through the csv file
-
+    for row in reader:
+        old = float(row['Salary'])
+        new = old * 1.1
 
     #check if the employee fits the search criteria
-
+        emp_name = f"{row['First Name']} {row['Last Name']}"
+        report[emp_name] = new
 
     
 
@@ -35,7 +39,12 @@ print()
 #iternate through the dictionary and print out the key and value as per image
 
 
-
+for name,new in report.items():
+    print(f"Employee Name: {name} Current Salary: ${old:.2f}")
+    print()
+    print('=========================================')
+    print()
+    print(f"Employee Name: {name} New Salary: ${new:.2f}")
 
           
 
@@ -45,5 +54,5 @@ print()
 
 #print out the total difference between the old salary and the new salary as per image.
 
-        
-    
+difference = (new - old)
+print(f"Total Increase in Salary: ${difference:.2f}")
